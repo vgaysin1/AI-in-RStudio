@@ -102,11 +102,10 @@ D) Domain expertise is no longer required once a model is successfully integrate
 --> Correct Answer: C (AI tools do not replace domain expertise; researchers must maintain oversight and think critically about every analytical step).
 
 2. If your dataset is subject to strict patient privacy constraints (such as human-subject genomic data, HIPAA, or institutional data use agreements), why might you choose the local model path via Ollama over a hosted API?
-
-A) Hosted APIs are illegal to use for any form of scientific research.
-B) Local models ensure that your data stays strictly on your local machine and never traverses external cloud servers.
-C) Local models provide higher-quality frontier model outputs than any hosted cloud API.
-D) Local models automatically encrypt API keys so you never have to worry about security.
+  1.Hosted APIs are illegal to use for any form of scientific research.
+  2.Local models ensure that your data stays strictly on your local machine and never traverses external cloud servers.
+  3.Local models provide higher-quality frontier model outputs than any hosted cloud API.
+  4.Local models automatically encrypt API keys so you never have to worry about security.
 
 ---> Correct Answer: B (Local models ensure data privacy by keeping sensitive or restricted data entirely on your own machine).
 
