@@ -8,7 +8,7 @@ date: "2026-09-24"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Table of Contents
+# Table of Contents
 
 00. About this Course
   - Learning goals
@@ -25,11 +25,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-## 00 About this Course
+# 00 About this Course
 
-### Learning Goals
+## Learning Goals
 
-### Abstract
+## Abstract
 
 This course introduces gander and ellmer, two modern R packages designed to embed context-aware AI assistants directly inside the RStudio.
 
@@ -40,7 +40,7 @@ The patterns learned here - stating an intent, prompting the assistant, inspecti
 **Keywords**: AI-assisted data analysis, gander, ellmer, large language models, reproducible research, RNA-seq, DESeq2, genomic data science education
 
 
-### Introduction
+## Introduction
 
 Welcome to gander-assisted data analysis in RStudio. This course is designed to show you how to utilize LLMs in the context of your RStudio environment.
 
@@ -71,7 +71,7 @@ We use bulk RNA-seq analysis for several reasons.
 - Airway Dataset: We utilize the 'airway' dataset, an RNA-seq transcriptome profiling study of airway smooth muscle cells responding to dexamethasone treatment (PubMed 24926665). 
 - Transferable Patterns: The core interaction loop - stating an intent, prompting your assistant, reading and reviewing the returned code, executing it, and verifying the output — is the same loop whether the analysis is RNA-seq, another omics assay, or a spreadsheet.
 
-### Ethical use of AI for data analysis
+## Ethical use of AI for data analysis
 
 Integrating generative AI into scientific research introduces important ethical, security, and other considerations. Using AI effectively requires maintaining scientific rigor and transparency.
 
@@ -90,7 +90,7 @@ Integrating generative AI into scientific research introduces important ethical,
 **Developing literacy with AI**
 - Ask AI to explain code: When gander suggests unfamiliar functions or complex operations, prompt it to break down the logic line by line.
 
-#### Questions
+### Questions
 
 1. What is the researcher's role when integrating generative AI into scientific analysis?
 
@@ -118,10 +118,10 @@ C) Both packages are local AI models that require a minimum of 19 GB of disk spa
 D) gander is used exclusively for Python integration, while ellmer is designed for R.
 
 ---> Correct Answer: B (ellmer manages communication and client connection to LLMs, whereas gander wraps that into an RStudio assistant aware of your active session environment).
---- 
+
+---
 
 ## Methods 
-
 
 ### Environment Requirements
 
@@ -195,7 +195,7 @@ D) To ensure your API key remains hidden from the R console history
 ---
 
 
-## 01. Setup
+# 01. Setup
 
 Most people meet a language model in a browser tab. They describe their data in prose, paste the code they get back into their editor, run it, watch it fail, and describe the failure in prose again. The model never sees the data. It never sees the error message, the column names, the shape of the object, or the three lines above the cursor that establish what the analyst is actually trying to do. It is asked to reason about files and an analysis it cannot observe.
 
@@ -205,7 +205,7 @@ Everything in this chapter is setup. None of it is analysis.
 
 **Exercises**:
 
-### 1.1 Install packages
+## 1.1 Install packages
 
 Three families for packages, for three different jobs.
 
@@ -225,7 +225,7 @@ Note:
 If you encounter installation or library loading errors, you may need to restart your R session. To restart R session:
 - In RStudio, go to the top menu and select Session > Restart R (or use the keyboard shortcut Cmd + Shift + F10 on Mac, or Ctrl + Shift + F10 on Windows/Linux).
 
-### 1.2 Load Libraries
+## 1.2 Load Libraries
 
 ```
 library(tidyverse)
@@ -235,7 +235,7 @@ library(gander)
 library(ellmer)
 ```
 
-### 1.3 Pick your model - the API path
+## 1.3 Pick your model - the API path
 
 Pick a provider, get a key, and save it to a safe space on your local computer. Run this line in the Console, never in a saved script, and never commit a key to a repository - keep it to yourself, keep it private.
 
@@ -267,7 +267,7 @@ chat$chat("Tell me one fact about bacterial genomes")
 Tip:
 You can also explicitly declare a model (e.g., chat <- chat_google_gemini(model = "gemini-2.5-flash").
 
-#### Questions:
+### Questions:
 
 1. Where is the safest place to run your Sys.setenv() command containing your API key?
 
@@ -290,11 +290,11 @@ D) chat <- prompt("What is a data frame?")
 
 ---
 
-### 1.4. Make a keyboard shortcut for gander
+## 1.4. Make a keyboard shortcut for gander
 
 In RStudio: Navigate to **Tools → Modify Keyboard Shortcuts…** → search for "gander" → assign `Cmd+Shift+G` (Mac) or, [`Ctrl+Alt+G` (Windows/Linux)]
 
-### 1.5. Test gander shortcut - examine 'airway' dataset
+## 1.5. Test gander shortcut - examine 'airway' dataset
 
 Highlight word, text a sentence or an empty space and press a keyboard shortcut (`Cmd+Shift+G`), then a dialog box will pop up where you can type your request (prompt)
 
@@ -310,7 +310,7 @@ Highlight word, text a sentence or an empty space and press a keyboard shortcut 
 RNA-seq counts for A549 cells treated with dexamethasone, including 8 samples (4 treated, 4 untreated) and associated metadata.
 ```
 
-### 1.6. Use gander_peek() after gander response
+## 1.6. Use gander_peek() after gander response
 
 Run gander_peek() in Console right after your prompt/response cycle to see what context 'gander' saw. E.g., run gander_peek() after highlighting 'airway', asking gander to 'Describe the airway dataset' and getting the output.
 
@@ -323,13 +323,13 @@ gander_peek()
 
 ---
 
-## 02. Load and qc with gander
+# 02. Load and qc with gander
 
 This chapter loads the data and examines it.
 
 **Exercises**:
 
-### 1. Load airway dataset into your workspace
+## 1. Load airway dataset into your workspace
 
 AI models often assume loading a library automatically attaches its internal datasets. This is not the case with airway dataset, which needs an additional step to be loaded into your RStudio environment as an object. So, to get an AI assistant like gander to give you the complete and correct code (which is data(airway)) - instead of just stopping at library(airway) - you need to explicitly prompt it for the data loading step.
 
@@ -344,7 +344,7 @@ AI models often assume loading a library automatically attaches its internal dat
 data(airway)
 ```
 
-### 2. Find out what files are available through airway dataset
+## 2. Find out what files are available through airway dataset
 
 | Gander |  |
 |:---|:---|
@@ -357,7 +357,7 @@ data(airway)
 The airway package provides a SummarizedExperiment object named `airway`. This object contains gene expression counts for 8 samples, with associated rowData (gene information) and colData (sample metadata, including cell line, treatment, and run accession).
 ```
 
-### 3. Exaplore airway dataset
+## 3. Exaplore airway dataset
 
 a. Airway dataset
 
@@ -411,10 +411,10 @@ as_tibble(colData(airway)) %>%
   labs(title = "Sample Distribution by Dexamethasone Treatment and Cell Type")
 ```
 
-#### Questions:
+### Questions:
 
 
-### 4. Filter lowly expressed genes
+## 4. Filter lowly expressed genes
 
 a. Filter counts to remove zeroes 
 
@@ -452,15 +452,14 @@ filtered_counts <-   # Assign the result back to 'filtered_counts'.
 Explanation: This code filters the `filtered_counts` matrix, keeping only rows (genes) where all columns (samples) have a count of 1 or greater. Rows that contain any zero counts across the samples are removed.
 ```
 
-
 ---
 
-## 03. Deseq2 with gander
+# 03. Deseq2 with gander
 
 
 **Exercises**:
 
-a. Perform differential expression analysis with DESeq2
+## 1. Perform differential expression analysis with DESeq2
 
 > [!IMPORTANT]
 > Highlight both objects - airway and filtered counts - for gander to see both the filtered count matrix and the associated metadata (stored in the airway object) to understand the full analysis context.
@@ -482,7 +481,7 @@ dds <- DESeq(dds)
 res <- results(dds)
 ```
 
-b. Ask to explain code
+## 2. Ask to explain code
 
 
 | Gander |  |
@@ -516,7 +515,7 @@ res <- results(dds)
 ```
 
 
-c. View results
+## 3. View results
 
 | Gander |  |
 |:---|:---|
@@ -547,7 +546,7 @@ A DESeqResults (res) object is derived from the dds object after the differentia
 
 ---
 
-## 0.4 Plot with gander
+# 0.4 Plot with gander
 
 
 - PCA - build it, then understand it
@@ -557,7 +556,7 @@ A DESeqResults (res) object is derived from the dds object after the differentia
 
 **Exercises**:
 
-### PCA plot
+## PCA plot
 
 a. Make a plot
 
@@ -575,7 +574,6 @@ DESeq2::plotPCA(vsd, intgroup = "dex")
 
 b. Explain code
 
-
 | Gander |  |
 |:---|:---|
 |**Highlight**| vsd <- DESeq2::vst(dds, blind = FALSE) | 
@@ -587,7 +585,7 @@ b. Explain code
 This line performs a Variance Stabilizing Transformation (VST) on the DESeqDataSet object 'dds' using the DESeq2::vst() function. The 'blind = FALSE' argument means that the experimental design information already present in 'dds' is used to estimate the dispersion trend for the transformation, which is recommended when analyzing differential expression. The transformed data, a DESeqTransform object, is then stored in the variable 'vsd'. This transformation helps normalize variance across different mean expression levels, making the data more suitable for downstream analyses like PCA or clustering.
 ```
 
-### MA plot
+## MA plot
 
 a. Create a plot
 
@@ -618,7 +616,7 @@ An MA plot visualizes the results of a differential expression analysis.
 plotMA(res)
 ```
 
-### Volcano plot
+## Volcano plot
 
 a. Create a plot
 
@@ -657,12 +655,12 @@ as.data.frame(res) %>%
 ---
 
 
-## 0.5 Annotate with gander
+# 0.5 Annotate with gander
 
 
 **Exercises**:
 
-### 1. Filter genes based on significance
+## 1. Filter genes based on significance
 
 | Gander |  |
 |:---|:---|
@@ -677,7 +675,7 @@ res_filtered <- as.data.frame(res) |>
 readr::write_csv(res_filtered, "filtered_results.csv")
 ```
 
-### 2. Look up gene symbols
+## 2. Look up gene symbols
 
 Gene symbols are already a part of the airway dataset, but they did not make it to the res or res_filtered file. By providing both, res_filtred AND airwyay as context for gander, gander will know to get gene from the dataset.
 
@@ -695,7 +693,7 @@ res_filtered$gene_symbol_airway <- gene_symbol_lookup[rownames(res_filtered)]
 
 Note, you will need to type `res_filtered` to see the change
 
-### 3. Convert Ensembl IDs to gene symbols and save the output as a csv file
+## 3. Convert Ensembl IDs to gene symbols and save the output as a csv file
 
 Sometimes, the input files will not contain gene symbols, in which case you might want to convert your e.g. Ensembl IDs to readable gene symbols
 
@@ -733,7 +731,7 @@ b. **Re-run code after installing the required packages**
 
 c. Save results with gene symbols
 
-### 4. Perform Gene Ontology analysis
+## 4. Perform Gene Ontology analysis
 
 a. Perform gene ontology analysis
 
