@@ -93,11 +93,10 @@ Integrating generative AI into scientific research introduces important ethical,
 ### Questions
 
 1. What is the researcher's role when integrating generative AI into scientific analysis?
-
-A) You can safely accept generated code blindly if it runs without syntax errors.
-B) The AI tool assumes full scientific responsibility for the validity of the results.
-C) You, the researcher, remain entirely responsible for the final analytical output, statistical validity, and biological interpretations.
-D) Domain expertise is no longer required once a model is successfully integrated into RStudio.
+  1. You can safely accept generated code blindly if it runs without syntax errors.
+  2. The AI tool assumes full scientific responsibility for the validity of the results.
+  3. You, the researcher, remain entirely responsible for the final analytical output, statistical validity, and biological interpretations.
+  4. Domain expertise is no longer required once a model is successfully integrated into RStudio.
 
 --> Correct Answer: C (AI tools do not replace domain expertise; researchers must maintain oversight and think critically about every analytical step).
 
