@@ -92,27 +92,27 @@ Integrating generative AI into scientific research introduces important ethical,
 
 ### Questions
 
-1. What is the researcher's role when integrating generative AI into scientific analysis?
-   A. You can safely accept generated code blindly if it runs without syntax errors.
-   B. The AI tool assumes full scientific responsibility for the validity of the results.
-   C. You, the researcher, remain entirely responsible for the final analytical output, statistical validity, and biological interpretations.
-   D. Domain expertise is no longer required once a model is successfully integrated into RStudio.
+1. **What is the researcher's role when integrating generative AI into scientific analysis?**
+      A. You can safely accept generated code blindly if it runs without syntax errors.
+     B. The AI tool assumes full scientific responsibility for the validity of the results.
+     C. You, the researcher, remain entirely responsible for the final analytical output, statistical validity, and biological interpretations.
+     D. Domain expertise is no longer required once a model is successfully integrated into RStudio.
 
 Correct Answer: C (AI tools do not replace domain expertise; researchers must maintain oversight and think critically about every analytical step).
 
-2. If your dataset is subject to strict patient privacy constraints (such as human-subject genomic data, HIPAA, or institutional data use agreements), why might you choose the local model path via Ollama over a hosted API?
-   A. Hosted APIs are illegal to use for any form of scientific research.
-   B. Local models ensure that your data stays strictly on your local machine and never traverses external cloud servers.
-   C. Local models provide higher-quality frontier model outputs than any hosted cloud API.
-   C. Local models automatically encrypt API keys so you never have to worry about security.
+2. **If your dataset is subject to strict patient privacy constraints (such as human-subject genomic data, HIPAA, or institutional data use agreements), why might you choose the local model path via Ollama over a hosted API?**
+     A. Hosted APIs are illegal to use for any form of scientific research.
+     B. Local models ensure that your data stays strictly on your local machine and never traverses external cloud servers.
+     C. Local models provide higher-quality frontier model outputs than any hosted cloud API.
+     C. Local models automatically encrypt API keys so you never have to worry about security.
 
 Correct Answer: B (Local models ensure data privacy by keeping sensitive or restricted data entirely on your own machine).
 
-3. What is the primary difference between ellmer and gander?
-  A. gander handles the underlying cloud authentication, while ellmer is the RStudio add-in.
-  B. ellmer connects R to various LLM providers, while gander integrates an AI assistant into your RStudio session and gathers context from your active environment.
-  C. Both packages are local AI models that require a minimum of 19 GB of disk space.
-  D. gander is used exclusively for Python integration, while ellmer is designed for R.
+3. **What is the primary difference between ellmer and gander?**
+    A. gander handles the underlying cloud authentication, while ellmer is the RStudio add-in.
+    B. ellmer connects R to various LLM providers, while gander integrates an AI assistant into your RStudio session and gathers context from your active environment.
+    C. Both packages are local AI models that require a minimum of 19 GB of disk space.
+    D. gander is used exclusively for Python integration, while ellmer is designed for R.
 
 Correct Answer: B (ellmer manages communication and client connection to LLMs, whereas gander wraps that into an RStudio assistant aware of your active session environment).
 
