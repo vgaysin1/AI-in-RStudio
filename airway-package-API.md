@@ -93,6 +93,7 @@ Integrating generative AI into scientific research introduces important ethical,
 ### Questions
 
 1. What is the researcher's role when integrating generative AI into scientific analysis?
+   
    a. You can safely accept generated code blindly if it runs without syntax errors.
    b. The AI tool assumes full scientific responsibility for the validity of the results.
    c. You, the researcher, remain entirely responsible for the final analytical output, statistical validity, and biological interpretations.
@@ -101,6 +102,7 @@ Integrating generative AI into scientific research introduces important ethical,
 --> Correct Answer: C (AI tools do not replace domain expertise; researchers must maintain oversight and think critically about every analytical step).
 
 2. If your dataset is subject to strict patient privacy constraints (such as human-subject genomic data, HIPAA, or institutional data use agreements), why might you choose the local model path via Ollama over a hosted API?
+   
    a. Hosted APIs are illegal to use for any form of scientific research.
    b. Local models ensure that your data stays strictly on your local machine and never traverses external cloud servers.
    c. Local models provide higher-quality frontier model outputs than any hosted cloud API.
