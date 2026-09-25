@@ -64,7 +64,7 @@ You have two primary paths for running models in RStudio in this course. Choose 
 | Best for | General public datasets and prototyping | Proprietary, sensitive, or restricted data|
 
 > [!IMPORTANT]
-> In this course we will only explore using hosted **API** path
+> In this course we will focus exclusively on the hosted **API** path, which requires your own private API key
 
 **Picking a model/provider:**
 Selecting the right model depends heavily on how it is hosted and what task it needs to perform.
