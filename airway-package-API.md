@@ -139,16 +139,19 @@ Five stages, one per chapter: environment setup; data import and quality control
 
 RNA-seq supplies the instance. The airway dataset (dexamethasone-treated versus untreated human airway smooth muscle cells) is used throughout because it is small, freely available, and has well-characterized biology, which lets readers check the model's biological interpretation against what is independently known about the glucocorticoid response — and that check is the point. Where an analysis has no independently known answer, the reader needs to construct one; the book models how.
 
-#### Questions
+### Questions
 
-1. What is the primary rationale for using the airway dataset throughout the book's RNA-seq analysis examples?
+1. **What is the primary rationale for using the airway dataset throughout the book's RNA-seq analysis examples?**
 
-A) It is a massive dataset that requires high-end enterprise server clusters to process.
-B) It is small, freely available, and has well-characterized biology, which allows readers to check the model's biological interpretations against independently known facts.
-C) It requires zero normalization or data filtering steps compared to other omics data.
-D) It is the only dataset that can integrate natively with the gander package add-in.
+  > A. It is a massive dataset that requires high-end enterprise server clusters to process.
+  >   
+  > B. It is small, freely available, and has well-characterized biology, which allows readers to check the model's biological interpretations against independently known facts.
+  > 
+  > C. It requires zero normalization or data filtering steps compared to other omics data.
+  > 
+  > D. It is the only dataset that can integrate natively with the gander package add-in.
 
----> Correct Answer: B (The airway dataset's well-characterized biology provides a benchmark to check the model's biological interpretations).
+Correct Answer: B (The airway dataset's well-characterized biology provides a benchmark to check the model's biological interpretations).
 
 ---
 
@@ -156,7 +159,7 @@ D) It is the only dataset that can integrate natively with the gander package ad
 
 ### Prompt rule of thumb
 
-- keep prompts short and concrete. Rather than *"help me do RNA-seq"* (which is too broad), ask *"Summarize key counts file statistics in a table"* or *"Filter genes with at least 1 count in all samples"*.
+- Keep prompts short and concrete. Rather than *"help me do RNA-seq"* (which is too broad), ask *"Summarize key counts file statistics in a table"* or *"Filter genes with at least 1 count in all samples"*.
 
 ### A Critical tip for Data Analysis with Gander: Minimize Context Noise
 
@@ -171,16 +174,20 @@ Minimize context noise by opening a new .R script containing only what the task 
 - **Remove context**. Use `chat$chat("...")` instead of gander add-in. The difference between using the gander add-in and standard chat (`chat$chat`) is that gander reads your surrounding code and activate environment and sends it along with your prompt. Sometimes, a verbally expanded question with no specific context can help. 
 - **Add more context** In opposite approach, expand gander context rather than limit it. E.g., provide additonal objects that may be helpful.
 
-#### Questions
+### Questions
 
-1. Why you may want to keep your script lean and open a new .R script containing only the necessary code when asking Gander for help?
+1. **Why you may want to keep your script lean and open a new .R script containing only the necessary code when asking Gander for help?**
 
-A) To automatically install missing Bioconductor package dependencies
-B) To prevent background code clutter from sending unrelated context and confusing the assistant
-C) To permanently save your workspace environment variables to disk
-D) To ensure your API key remains hidden from the R console history
+  > A. To automatically install missing Bioconductor package dependencies
+  >   
+  > B. To prevent background code clutter from sending unrelated context and confusing the assistant
+  > 
+  > C. To permanently save your workspace environment variables to disk
+  > 
+  > D. To ensure your API key remains hidden from the R console history
+  > 
 
----> Correct Answer: B (A long script sends a pile of unrelated code, adding unnecessary context noise).
+Correct Answer: B (A long script sends a pile of unrelated code, adding unnecessary context noise).
 
 ---
 
@@ -211,7 +218,7 @@ Everything in this chapter is setup. None of it is analysis.
 
 Three families for packages, for three different jobs.
 
-```
+```{r}
 # Common R tools for data manipulation and analysis
 install.packages("tidyverse")
 
@@ -229,7 +236,7 @@ If you encounter installation or library loading errors, you may need to restart
 
 ## 1.2 Load Libraries
 
-```
+```{r}
 library(tidyverse)
 library(DESeq2)
 library(airway)
@@ -242,15 +249,17 @@ library(ellmer)
 Pick a provider, get a key, and save it to a safe space on your local computer. Run this line in the Console, never in a saved script, and never commit a key to a repository - keep it to yourself, keep it private.
 
 In R Console pick a provider (here we choose Google Gemini)
-```
+
+```{r}
 # Pick ONE provider:
-Sys.setenv(GEMINI_API_KEY = "your-key-here")      # Gemini
+  Sys.setenv(GEMINI_API_KEY = "your-key-here")     # Gemini
 # Sys.setenv(OPENAI_API_KEY = "your-key-here")    # OpenAI
 # Sys.setenv(ANTHROPIC_API_KEY = "your-key-here") # Anthropic
 ```
 
 Then point gander at a model from that provider
-```
+
+```{r}
 options(gander.chat = ellmer::chat_google_gemini())   # Gemini 'default' model (gemini-2.5-flash at this time)
 # options(gander.chat = ellmer::chat_openai())        # GPT models
 # options(gander.chat = ellmer::chat_anthropic())     # Claude models
