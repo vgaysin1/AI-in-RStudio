@@ -183,6 +183,21 @@ Minimize context noise by opening a new .R script containing only what the task 
 - **Remove context**. Use `chat$chat("...")` instead of gander add-in. The difference between using the gander add-in and standard chat (`chat$chat`) is that gander reads your surrounding code and activate environment and sends it along with your prompt. Sometimes, a verbally expanded question with no specific context can help. 
 - **Add more context** In opposite approach, expand gander context rather than limit it. E.g., provide additonal objects that may be helpful.
 
+## Questions
+
+1. **Why you may want to keep your script lean and open a new .R script containing only the necessary code when asking Gander for help?**
+
+  > A. To automatically install missing Bioconductor package dependencies.
+  >   
+  > B. To prevent background code clutter from sending unrelated context and confusing the assistant.
+  > 
+  > C. To permanently save your workspace environment variables to disk.
+  > 
+  > D. To ensure your API key remains hidden from the R console history.
+  > 
+
+Correct Answer: B (A long script sends a pile of unrelated code, adding unnecessary context noise).
+
 ---
 
 ## How to use gander shortcut:
@@ -192,6 +207,23 @@ Minimize context noise by opening a new .R script containing only what the task 
 > 2. **Evoke gander** with your pre-set shortcut *Shift+Cmd+g* \
 > 3. **Enter a prompt** - a short, concrete instruction of what you want to do in plain language \
 > 4. **Review the output** before running the generated code
+
+## Questions
+
+1. **What is the sequence and best practice when interacting with the AI assistant gander in RStudio?**
+
+  > A. Open a blank script, type your prompt in plain language, and automatically execute the generated code without inspection.
+  >   
+  > B. Highlight a specific object for context, invoke gander with the shortcut, enter a short and concrete prompt, and carefully review the output before running the generated code.
+  > 
+  > C. Trigger the shortcut first, type a broad multi-task instruction like "do all my RNA-seq analysis," and let the AI overwrite your workspace files.
+  > 
+  > D. Skip highlighting any objects, use the shortcut to launch a local Ollama server, and let the model automatically push results to GitHub.
+  > 
+
+Correct Answer: B (You highlight an object for context, trigger gander, supply a clear prompt, and always review the AI's code output before execution).
+
+---
 
 ## Use gander_peek often
 
@@ -203,18 +235,18 @@ Debugging context: If a model misunderstands your workspace or gives unexpected 
 
 ## Questions
 
-1. **Why you may want to keep your script lean and open a new .R script containing only the necessary code when asking Gander for help?**
+1. **When utilizing an AI coding assistant like gander that automatically injects background context (such as your surrounding script, cursor position, and active R environment) into a prompt, why would a researcher use the gander_peek() function?**
 
-  > A. To automatically install missing Bioconductor package dependencies
+  > A. To permanently clear all active ellmer chat history and reset your cloud API key.
   >   
-  > B. To prevent background code clutter from sending unrelated context and confusing the assistant
+  > B. To check the exact context and prompt sent to the AI in your last request, helping you debug if it misunderstood your workspace.
   > 
-  > C. To permanently save your workspace environment variables to disk
+  > C. To automatically force a local model to switch over to a cloud-hosted API provider.
   > 
-  > D. To ensure your API key remains hidden from the R console history
+  > D. To bypass the manual data loading step (data(airway)) entirely for Bioconductor datasets.
   > 
 
-Correct Answer: B (A long script sends a pile of unrelated code, adding unnecessary context noise).
+Correct Answer: B (gander_peek() returns the underlying ellmer chat object from your most recent interaction, allowing you to verify what background context and snippets were actually sent to the AI model).
 
 ---
 
