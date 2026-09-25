@@ -46,12 +46,14 @@ The patterns learned here - stating an intent, prompting the assistant, inspecti
 Welcome to gander-assisted data analysis in RStudio. This course is designed to show you how to utilize LLMs in the context of your RStudio environment.
 
 **Gander and Ellmer tools**
+
 Gander and ellmer perform different jobs, and neither one is the AI model itself.
 - `ellmer` is the underlying client package that connects R to various LLM providers. It knows how to speak to a model and handles the mechanics of communication, including authentication and streaming responses token by token It supports major backend providers such as Anthropic, OpenAI, Google, Ollama, and others.
 - `gander` is an R package that integrates an AI assistant in your RStudio session and is aware of the objects in your active session. It gathers context from your R environment - such as the objects in your environment, the column names and types in your data frames, the code around your cursor - and hands that context to an ellmer chat.
 
 **Pick your path: Hosted vs. Local**
-You have two primary paths for running models in RStudio in this course. Choose the path that best fits your security, budget, and hardware constraings. You can easily switch between them later with only minor changes to your data processing and analysis scripts.
+
+You have two primary paths for running models in RStudio in this course. Choose the path that best fits your security, budget, and hardware constraints. 
 
 | Feature | Hosted API| Local (Ollama)|
 | :--| :--|:--|
@@ -60,6 +62,9 @@ You have two primary paths for running models in RStudio in this course. Choose 
 | Hardware | None or Minimal | Substantial ~19 GB disk; GPU strongly preferred |
 | Model quality | Highest available frontier models| Generally smaller, somewhat weaker models |
 | Best for | General public datasets and prototyping | Proprietary, sensitive, or restricted data|
+
+> [!IMPORTANT]
+> In this course we will only explore using hosted **API** path
 
 **Picking a model/provider:**
 Selecting the right model depends heavily on how it is hosted and what task it needs to perform.
