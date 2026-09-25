@@ -208,7 +208,7 @@ Correct Answer: B (A long script sends a pile of unrelated code, adding unnecess
 > 3. **Enter a prompt** - a short, concrete instruction of what you want to do in plain language \
 > 4. **Review the output** before running the generated code
 
-## gander_peek
+## Use gander_peek often
 
 Because gander automatically packages your surrounding script, cursor position, and active R environment into a prompt behind the scenes, you might occasionally wonder: What exactly is it sending to the model? You can inspect the exact payload using gander_peek() right after running your gander add-in.
 
@@ -286,9 +286,7 @@ Initialize the chat
 chat <- chat_google_gemini()
 ```
 
-::: {.alert .alert-info}
 **Note:** You can also explicitly declare a model (e.g., chat <- chat_google_gemini(model = "gemini-2.5-flash").
-:::
 
 Verify the connection before wiring it into gander
 
@@ -314,8 +312,11 @@ Options A, C, and D are wrong and all risk accidentally exposing your secret key
 2. **Once you have created your chat object (chat <- chat_google_gemini()), what is the correct syntax to send a question or prompt to the model in R?**
 
   > A. chat.ask("What is a data frame?")
+  >
   > B. chat$chat("What is a data frame?")
+  >
   > C. send_message(chat, "What is a data frame?")
+  >
   > D. chat <- prompt("What is a data frame?")
 
 Correct Answer: B. (chat$chat("...").
@@ -447,6 +448,18 @@ as_tibble(colData(airway)) %>%
 
 ## Questions:
 
+1. **Which two functions can be used to inspect the raw counts matrix and sample metadata of the airway SummarizedExperiment object?**
+
+  > A. assay() and colData()
+  >
+  > B. get_counts() and get_metadata()
+  >
+  > C. extract_matrix() and sample_info()
+  >
+  > D. counts() and meta()
+
+Correct Answer: A (assay(airway) extracts the counts matrix, and colData(airway) extracts the sample metadata).
+
 ---
 
 # 03. Filter lowly expressed genes
@@ -487,6 +500,20 @@ filtered_counts <-   # Assign the result back to 'filtered_counts'.
 Explanation: This code filters the `filtered_counts` matrix, keeping only rows (genes) where all columns (samples) have a count of 1 or greater. Rows that contain any zero counts across the samples are removed.
 ```
 
+## Questions:
+
+1. **Why is prompting an AI assistant to "Annotate and explain this code" a valuable practice in this workflow?**
+
+  > A. It automatically converts the R matrix into a CSV file.
+  >
+  > B. It helps build data literacy by breaking down abstract matrix indexing, logical comparisons, and functions like rowSums() and ncol() line by line.
+  >
+  > C. It is required by the DESeq2 package before running differential expression.
+  >
+  > D. It permanently replaces the need to run the filtering command in your console.
+
+Correct Answer: B (Asking the model to explain unfamiliar syntax builds comprehension of how operations work under the hood).
+
 ---
 
 # 04. Deseq2 with gander
@@ -494,7 +521,7 @@ Explanation: This code filters the `filtered_counts` matrix, keeping only rows (
 
 **Exercises**:
 
-## 1. Perform differential expression analysis with DESeq2
+## 4.1. Perform differential expression analysis with DESeq2
 
 > [!IMPORTANT]
 > Highlight both objects - airway and filtered counts - for gander to see both the filtered count matrix and the associated metadata (stored in the airway object) to understand the full analysis context.
@@ -516,7 +543,7 @@ dds <- DESeq(dds)
 res <- results(dds)
 ```
 
-## 2. Ask to explain code
+## 4.2. Ask to explain code
 
 
 | Gander |  |
@@ -550,7 +577,7 @@ res <- results(dds)
 ```
 
 
-## 3. View results
+## 4.3. View results
 
 | Gander |  |
 |:---|:---|
@@ -579,6 +606,9 @@ A DESeqDataSet (dds) object contains the raw count data, experimental design, sa
 A DESeqResults (res) object is derived from the dds object after the differential expression analysis is complete. It contains the final results of the statistical tests for differential expression, including log2 fold changes, standard errors, p-values, and adjusted p-values for each gene.
 ```
 
+## Questions:
+
+
 ---
 
 # 0.5 Plot with gander
@@ -591,7 +621,7 @@ A DESeqResults (res) object is derived from the dds object after the differentia
 
 **Exercises**:
 
-## PCA plot
+## 5.1 PCA plot
 
 a. Make a plot
 
@@ -620,7 +650,7 @@ b. Explain code
 This line performs a Variance Stabilizing Transformation (VST) on the DESeqDataSet object 'dds' using the DESeq2::vst() function. The 'blind = FALSE' argument means that the experimental design information already present in 'dds' is used to estimate the dispersion trend for the transformation, which is recommended when analyzing differential expression. The transformed data, a DESeqTransform object, is then stored in the variable 'vsd'. This transformation helps normalize variance across different mean expression levels, making the data more suitable for downstream analyses like PCA or clustering.
 ```
 
-## MA plot
+## 5.2 MA plot
 
 a. Create a plot
 
@@ -651,7 +681,7 @@ An MA plot visualizes the results of a differential expression analysis.
 plotMA(res)
 ```
 
-## Volcano plot
+## 5.3 Volcano plot
 
 a. Create a plot
 
@@ -686,16 +716,16 @@ as.data.frame(res) %>%
   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
 ```
 
+## Questions:
 
 ---
 
 
 # 0.6 Annotate with gander
 
-
 **Exercises**:
 
-## 1. Filter genes based on significance
+## 6.1. Filter genes based on significance
 
 | Gander |  |
 |:---|:---|
@@ -710,7 +740,7 @@ res_filtered <- as.data.frame(res) |>
 readr::write_csv(res_filtered, "filtered_results.csv")
 ```
 
-## 2. Look up gene symbols
+## 6.2. Look up gene symbols
 
 Gene symbols are already a part of the airway dataset, but they did not make it to the res or res_filtered file. By providing both, res_filtred AND airwyay as context for gander, gander will know to get gene from the dataset.
 
@@ -728,7 +758,7 @@ res_filtered$gene_symbol_airway <- gene_symbol_lookup[rownames(res_filtered)]
 
 Note, you will need to type `res_filtered` to see the change
 
-## 3. Convert Ensembl IDs to gene symbols and save the output as a csv file
+## 6.3. Convert Ensembl IDs to gene symbols and save the output as a csv file
 
 Sometimes, the input files will not contain gene symbols, in which case you might want to convert your e.g. Ensembl IDs to readable gene symbols
 
@@ -828,6 +858,8 @@ c. Summarize results
 ```{r}
 summary(ego@result)
 ```
+
+## Questions:
 
 ---
 
