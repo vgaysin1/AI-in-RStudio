@@ -63,13 +63,13 @@ You have two primary paths for running models in RStudio in this course. Choose 
 | Model quality | Highest available frontier models| Generally smaller, somewhat weaker models |
 | Best for | General public datasets and prototyping | Proprietary, sensitive, or restricted data|
 
-> [!IMPORTANT]
-> In this course we will focus exclusively on the hosted **API** path, which requires your own private API key
-
 **Picking a model/provider:**
 Selecting the right model depends heavily on how it is hosted and what task it needs to perform.
 - Hosted APIs: If you select the hosted path, you will configure an API key for a kajor provider through 'ellmer', tapping into state-of-the-art cloud models.
 - Local models: For local execution via Ollama, we demonstrate using code-optimized models such as qwen3-coder trained specifically on code; General-purpose models of the same parameter size will often produce code that looks plausible at glance, but fails during execution. 
+
+> [!IMPORTANT]
+> In this course we will focus exclusively on the hosted **API** path, which requires your own private API key.
 
 **Bulk RNA-seq as working example:**
 We use bulk RNA-seq analysis for several reasons. 
