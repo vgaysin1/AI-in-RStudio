@@ -183,21 +183,6 @@ Minimize context noise by opening a new .R script containing only what the task 
 - **Remove context**. Use `chat$chat("...")` instead of gander add-in. The difference between using the gander add-in and standard chat (`chat$chat`) is that gander reads your surrounding code and activate environment and sends it along with your prompt. Sometimes, a verbally expanded question with no specific context can help. 
 - **Add more context** In opposite approach, expand gander context rather than limit it. E.g., provide additonal objects that may be helpful.
 
-## Questions
-
-1. **Why you may want to keep your script lean and open a new .R script containing only the necessary code when asking Gander for help?**
-
-  > A. To automatically install missing Bioconductor package dependencies
-  >   
-  > B. To prevent background code clutter from sending unrelated context and confusing the assistant
-  > 
-  > C. To permanently save your workspace environment variables to disk
-  > 
-  > D. To ensure your API key remains hidden from the R console history
-  > 
-
-Correct Answer: B (A long script sends a pile of unrelated code, adding unnecessary context noise).
-
 ---
 
 ## How to use gander shortcut:
@@ -215,6 +200,21 @@ Because gander automatically packages your surrounding script, cursor position, 
 What it does: It returns the underlying ellmer chat object from your most recent interaction as-is.gander_peek() will always show you the exact context summary from your immediately preceding request.
 
 Debugging context: If a model misunderstands your workspace or gives unexpected code, running gander_peek() lets you check whether your data frame structures, package versions, or script snippets were correctly intercepted and passed along.
+
+## Questions
+
+1. **Why you may want to keep your script lean and open a new .R script containing only the necessary code when asking Gander for help?**
+
+  > A. To automatically install missing Bioconductor package dependencies
+  >   
+  > B. To prevent background code clutter from sending unrelated context and confusing the assistant
+  > 
+  > C. To permanently save your workspace environment variables to disk
+  > 
+  > D. To ensure your API key remains hidden from the R console history
+  > 
+
+Correct Answer: B (A long script sends a pile of unrelated code, adding unnecessary context noise).
 
 ---
 
@@ -294,35 +294,6 @@ Verify the connection before wiring it into gander
 chat$chat("Tell me one fact about bacterial genomes")
 ```
 
-## Questions:
-
-1. **Where is the safest place to run your Sys.setenv() command containing your API key?**
-
-  > A. At the top of an R script that you push to GitHub
-  > 
-  > B. Interactively in the R Console, or securely stored in your .Renviron file
-  > 
-  > C. Inside a markdown documentation file (.Rmd or .qmd)
-  > 
-  > D. Hardcoded directly into a package function call
-
-Correct Answer: B. nteractively in the Console or stored securely in a local .Renviron file keeps your API keys out of your code files.
-Options A, C, and D are wrong and all risk accidentally exposing your secret keys if you share, publish, or commit your files to a public repository like GitHub.
-
-2. **Once you have created your chat object (chat <- chat_google_gemini()), what is the correct syntax to send a question or prompt to the model in R?**
-
-  > A. chat.ask("What is a data frame?")
-  >
-  > B. chat$chat("What is a data frame?")
-  >
-  > C. send_message(chat, "What is a data frame?")
-  >
-  > D. chat <- prompt("What is a data frame?")
-
-Correct Answer: B. (chat$chat("...").
-
----
-
 ## 1.4. Make a keyboard shortcut for gander
 
 In RStudio: Navigate to **Tools → Modify Keyboard Shortcuts…** → search for "gander" → assign `Cmd+Shift+G` (Mac) or, [`Ctrl+Alt+G` (Windows/Linux)]
@@ -353,6 +324,33 @@ In Console:
 ```{r}
 gander_peek()
 ```
+
+## Questions:
+
+1. **Where is the safest place to run your Sys.setenv() command containing your API key?**
+
+  > A. At the top of an R script that you push to GitHub
+  > 
+  > B. Interactively in the R Console, or securely stored in your .Renviron file
+  > 
+  > C. Inside a markdown documentation file (.Rmd or .qmd)
+  > 
+  > D. Hardcoded directly into a package function call
+
+Correct Answer: B. nteractively in the Console or stored securely in a local .Renviron file keeps your API keys out of your code files.
+Options A, C, and D are wrong and all risk accidentally exposing your secret keys if you share, publish, or commit your files to a public repository like GitHub.
+
+2. **Once you have created your chat object (chat <- chat_google_gemini()), what is the correct syntax to send a question or prompt to the model in R?**
+
+  > A. chat.ask("What is a data frame?")
+  >
+  > B. chat$chat("What is a data frame?")
+  >
+  > C. send_message(chat, "What is a data frame?")
+  >
+  > D. chat <- prompt("What is a data frame?")
+
+Correct Answer: B. (chat$chat("...").
 
 ---
 
